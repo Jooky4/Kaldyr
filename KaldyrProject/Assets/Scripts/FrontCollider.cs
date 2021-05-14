@@ -8,15 +8,12 @@ public class FrontCollider : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
     private CameraManager cameraManager;
-    [SerializeField]
-    private float stepAccelerationCamera = 5.0f;
-    private float oldSpeedMoveCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         cameraManager = mainCamera.GetComponent<CameraManager>();
-        oldSpeedMoveCamera = cameraManager.stepMoveCamera;
+       // oldSpeedMoveCamera = cameraManager.stepMoveCamera;
 
     }
 
@@ -30,8 +27,9 @@ public class FrontCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("Front Player");
-            cameraManager.stepMoveCamera += stepAccelerationCamera;
+            Debug.Log("Front Enter Player");
+            //cameraManager.stepMoveCamera += stepAccelerationCamera;
+            cameraManager.IsAccelerationCamera = true;
         }
 
     }
@@ -40,8 +38,10 @@ public class FrontCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("Front Player");
-            cameraManager.stepMoveCamera = oldSpeedMoveCamera;
+            Debug.Log("Front Exit Player");
+            //cameraManager.stepMoveCamera = oldSpeedMoveCamera;
+            cameraManager.IsAccelerationCamera = false;
+
         }
 
     }

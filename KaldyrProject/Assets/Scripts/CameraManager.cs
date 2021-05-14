@@ -10,14 +10,19 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private Transform endPosition;
     [SerializeField]
-    public float stepMoveCamera = 1;
+    [Header ("Скорость камеры")]
+    private float stepMoveCamera = 1;
+    [SerializeField]
+    [Header("Ускорение камеры")]
+    private float stepAccelerationCamera = 5.0f;
     private float speedMove;
+    private float distanceDelta;
     [SerializeField]
     private float positionCameraZ = -10f;
     [SerializeField]
     private float positionCameraY = 30f;
     public bool isMoveCamera = true;
-
+    public bool IsAccelerationCamera = false;
 
 
     void Start()
@@ -32,9 +37,18 @@ public class CameraManager : MonoBehaviour
 
         if (isMoveCamera)
         {
-            speedMove = stepMoveCamera * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, endPosition.position, speedMove);
+            distanceDelta = speedMove * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, endPosition.position, distanceDelta);
             transform.position = new Vector3(transform.position.x, positionCameraY, positionCameraZ);
+        }
+
+        if (IsAccelerationCamera)
+        {
+            speedMove = stepMoveCamera + stepAccelerationCamera;
+        }
+        else
+        {
+            speedMove = stepMoveCamera;
         }
        
     }
