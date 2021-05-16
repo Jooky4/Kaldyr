@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+
+// скрипт управления слайдером громкости
+
 public class AudioScript : MonoBehaviour
 {   [Tooltip ("Используемый звуковой миксер")]
     [SerializeField]

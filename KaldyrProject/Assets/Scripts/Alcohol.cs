@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// скрипт учета алко бутылок
+// управление  звуком бутылок и удалением
+
 public class Alcohol : MonoBehaviour
 {
-
     [SerializeField]
     private AudioClip soundBottle;
     private AudioSource audioSourceBottle;
@@ -12,10 +14,6 @@ public class Alcohol : MonoBehaviour
     private float stepAlcohol = 0.1f;
     public float alcohol;
     public int bottle;
-
-
-
-
 
     // Start is called before the first frame update
     void Start()

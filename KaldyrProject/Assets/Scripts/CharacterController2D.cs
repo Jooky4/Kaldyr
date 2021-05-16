@@ -24,9 +24,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
     private Rigidbody2D rb2d;
-    private float horizontal;         //ось горизонт 
-    private float vertical;            //ось вертикаль
-    private bool Jumped = false;        // флаг прыжок
+    public float horizontal;         //ось горизонт 
+    public float vertical;            //ось вертикаль
+    public bool Jumped = false;        // флаг прыжок
     private bool facingRight = true;   // куда повернут
     [SerializeField]
     private bool isLadder = false;     // флаг лесницы
@@ -34,10 +34,6 @@ public class CharacterController2D : MonoBehaviour
     private bool isjump = false;       // флаг прыжок
     public KeyCode action = KeyCode.E; // клавиша действия
     public bool isStop = true;
-  
-    
-
-  
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +53,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isStop)
         {
-            UpdateAxis();
+            //UpdateAxis();
             UpdateFlip();
             UpdateMoveLadder();
         }
@@ -67,7 +63,10 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        Move();
+        if (isStop)
+        {
+            Move();
+        }
     }
 
     /// <summary>
@@ -75,9 +74,9 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     void UpdateAxis()  
     {
-        Jumped = Input.GetButtonDown("Jump");        // прыжок
-        horizontal = Input.GetAxis("Horizontal");   // A   D
-        vertical = Input.GetAxis("Vertical");        // W   S
+        //Jumped = Input.GetButtonDown("Jump");        // прыжок
+       // horizontal = Input.GetAxis("Horizontal");   // A   D
+       // vertical = Input.GetAxis("Vertical");        // W   S
 
         if (Input.GetKeyDown(action))              // E
         {
@@ -125,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
     private void Move()
     {
         rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
-        horizontal = 0;
+       // horizontal = 0;
     }
 
     /// <summary>

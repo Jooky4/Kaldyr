@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private Alcohol alcohol;
     private CharacterController2D characterController2D;
     [SerializeField]
+    private UICharacterController uICharacterController;
+    [SerializeField]
     private GameObject[] panelLoss;
     [SerializeField]
     private GameObject Camera;
@@ -32,12 +34,13 @@ public class GameManager : MonoBehaviour
     private float valueAlcohol;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Player = Instantiate(prefabPlayer, pointSpawn.position, Quaternion.identity);
         alcohol = Player.GetComponent<Alcohol>();
         characterController2D = Player.GetComponent<CharacterController2D>();
         cameraManager = Camera.GetComponent<CameraManager>();
+        uICharacterController.prefabPlayer = Player;
 
 
 
