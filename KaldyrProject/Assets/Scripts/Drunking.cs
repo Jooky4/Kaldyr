@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// скрипт изменения спрайта 
+// зависит от опьянения
+
 public class Drunking : MonoBehaviour
 {
-    [SerializeField] private Sprite spr1, spr2, spr3;
-    [SerializeField] private GameObject SpritePlayer;
+    [SerializeField] private Sprite spr1, spr2, spr3;  // спрайты состояния
+    [SerializeField] private GameObject SpritePlayer; //  спрайт игрока 
     //[SerializeField] private GameObject AnimPlayer;
    // [SerializeField] private Animator playerNot, playerDrink, playerDrunk;
-    private Alcohol alcohol;
+    private Alcohol alcohol;   // кол-во алко
    // private Animator anim;
     // Animator anim;
     // Start is called before the first frame update
@@ -22,7 +25,7 @@ public class Drunking : MonoBehaviour
           //условие для замены спрайта
 
 
-         if (alcohol.alcohol < 0.3f) {
+         if (alcohol.alcohol < 0.3f) {      // меняем спрайты с учетом состояния игрока
              SpritePlayer.GetComponent<SpriteRenderer>().sprite = spr1;
             // AnimPlayer.GetComponent<Animator>().runtimeAnimatorController = playerNot;
 
