@@ -528,6 +528,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 866460370}
     m_Modifications:
+    - target: {fileID: 2053962704935087997, guid: 87dbb926e9c4f6246b81575f3d927728,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053962705266678285, guid: 87dbb926e9c4f6246b81575f3d927728,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2053962706413458376, guid: 87dbb926e9c4f6246b81575f3d927728,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5727,8 +5737,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 797028382}
   endPosition: {fileID: 2003087485}
-  stepMoveCamera: 5
+  speedMoveCamera: 1
+  stepSpeedCamera: 1
   stepAccelerationCamera: 5
+  maxSpeedCamera: 5
+  speedMove: 0
   positionCameraZ: -50
   positionCameraY: 30
   isMoveCamera: 1
