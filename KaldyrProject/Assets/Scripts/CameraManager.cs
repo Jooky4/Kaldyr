@@ -58,18 +58,17 @@ public class CameraManager : MonoBehaviour
 
         if (IsAccelerationCamera)
         {
-            speedMoveOld = speedMove;
-            speedMove = speedMove + stepAccelerationCamera;
+            //speedMoveOld = speedMove;
+           speedMove = speedMoveOld + stepAccelerationCamera;
 
             // speedMove = speedMoveCamera + stepAccelerationCamera;
         }
         else
         {
-            speedMove += speedMoveCamera * stepSpeedCamera * 0.005f;
-            //speedMove = speedMoveOld;
-            speedMove = Mathf.Clamp(speedMove, 0, maxSpeedCamera);
-            //speedMove = speedMoveOld;
-            //speedMove = speedMoveCamera;
+
+            //speedMove = speedMoveOld + speedMoveCamera * stepSpeedCamera * 0.001f;
+            //speedMove = Mathf.Clamp(speedMove, 0, maxSpeedCamera);
+             speedMove = speedMoveOld;
         }
 
         
@@ -77,7 +76,9 @@ public class CameraManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-       
+       speedMoveOld = speedMoveOld + speedMoveCamera * stepSpeedCamera * 0.001f;
+       speedMoveOld = Mathf.Clamp(speedMoveOld, 0, maxSpeedCamera);
+
     }
 
 
