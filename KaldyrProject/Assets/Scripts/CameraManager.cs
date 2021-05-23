@@ -9,13 +9,24 @@ public class CameraManager : MonoBehaviour
     private Transform startPosition;
     [SerializeField]
     private Transform endPosition;
+
     [SerializeField]
     [Header ("Скорость камеры")]
-    private float stepMoveCamera = 1;
+    private float speedMoveCamera = 1;
+    [Header("Шаг увеличения скорости камеры")]
+    [SerializeField]
+    [Range(1, 10)]
+    private float stepSpeedCamera;
     [SerializeField]
     [Header("Ускорение камеры")]
     private float stepAccelerationCamera = 5.0f;
+    [Header("Max скорость камеры")]
+    [SerializeField]
+    [Range(1, 50)]
+    private float maxSpeedCamera;
+    [SerializeField]
     private float speedMove;
+    private float speedMoveOld;
     private float distanceDelta;
     [SerializeField]
     private float positionCameraZ = -10f;
@@ -29,6 +40,9 @@ public class CameraManager : MonoBehaviour
     {
 
         transform.position = new Vector3(startPosition.transform.position.x, positionCameraY, positionCameraZ);
+        speedMoveOld = 0;
+        speedMove =0;
+
         //isMoveCamera = false;
     }
 
@@ -44,12 +58,21 @@ public class CameraManager : MonoBehaviour
 
         if (IsAccelerationCamera)
         {
-            speedMove = stepMoveCamera + stepAccelerationCamera;
+           speedMove = speedMoveOld + stepAccelerationCamera;
         }
         else
         {
-            speedMove = stepMoveCamera;
+             speedMove = speedMoveOld;
         }
-       
+
+        
+
     }
+    private void FixedUpdate()
+    {
+       speedMoveOld = speedMoveOld + speedMoveCamera * stepSpeedCamera * 0.002f;
+       speedMoveOld = Mathf.Clamp(speedMoveOld, 0, maxSpeedCamera);
+    }
+
+
 }

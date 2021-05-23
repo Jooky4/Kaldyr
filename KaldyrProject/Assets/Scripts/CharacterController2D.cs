@@ -56,8 +56,17 @@ public class CharacterController2D : MonoBehaviour
             //UpdateAxis();
             UpdateFlip();
             UpdateMoveLadder();
+            Jump();
+
         }
-        Jump();
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            Jumped = false;
+            horizontal = 0;
+            vertical = 0;
+        }
+
     }
 
     private void FixedUpdate()
@@ -67,6 +76,7 @@ public class CharacterController2D : MonoBehaviour
         {
             Move();
         }
+      
     }
 
     /// <summary>
@@ -124,7 +134,7 @@ public class CharacterController2D : MonoBehaviour
     private void Move()
     {
         rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
-       // horizontal = 0;
+        //horizontal = 0;
     }
 
     /// <summary>
