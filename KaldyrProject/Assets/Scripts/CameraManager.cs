@@ -11,19 +11,29 @@ public class CameraManager : MonoBehaviour
     private Transform endPosition;
 
     [SerializeField]
-    [Header ("Скорость камеры")]
-    private float speedMoveCamera = 1;
-    [Header("Шаг увеличения скорости камеры")]
+    [Header ("Начальная скорость камеры")]
+    private float beginSpeedCamera = 1f;
+
     [SerializeField]
-    [Range(1, 10)]
-    private float stepSpeedCamera;
+    [Header("Таймер ускорения камеры")]
+    private float timerAccelerateCamera = 1f;
+
+    [Header("Шаг ускорения камеры")]
     [SerializeField]
-    [Header("Ускорение камеры")]
+    private float stepAccelerateCamera = 1f;
+
+    [Header("Шаг времени ускорения камеры")]
+    [SerializeField]
+    private float stepTimerAccelerateCamera = 1f;
+
+    //[SerializeField]
+    //[Header("Ускорение камеры")]
     private float stepAccelerationCamera = 5.0f;
+
     [Header("Max скорость камеры")]
     [SerializeField]
-    [Range(1, 50)]
-    private float maxSpeedCamera;
+    private float maxSpeedCamera = 10f;
+
     [SerializeField]
     private float speedMove;
     private float speedMoveOld;
@@ -40,15 +50,13 @@ public class CameraManager : MonoBehaviour
     {
 
         transform.position = new Vector3(startPosition.transform.position.x, positionCameraY, positionCameraZ);
-        speedMoveOld = 0;
-        speedMove =0;
-
-        //isMoveCamera = false;
+        speedMoveOld = beginSpeedCamera;
+        speedMove = 0;
+        InvokeRepeating("TimerAccelerateCamera", timerAccelerateCamera, stepTimerAccelerateCamera);
     }
 
     void Update()
     {
-
         if (isMoveCamera)
         {
             distanceDelta = speedMove * Time.deltaTime;
@@ -64,14 +72,12 @@ public class CameraManager : MonoBehaviour
         {
              speedMove = speedMoveOld;
         }
-
-        
-
     }
-    private void FixedUpdate()
+   
+    void TimerAccelerateCamera()
     {
-       speedMoveOld = speedMoveOld + speedMoveCamera * stepSpeedCamera * 0.002f;
-       speedMoveOld = Mathf.Clamp(speedMoveOld, 0, maxSpeedCamera);
+        speedMoveOld = speedMoveOld + beginSpeedCamera * stepAccelerateCamera; //* 0.002f;
+        speedMoveOld = Mathf.Clamp(speedMoveOld, 0, maxSpeedCamera);
     }
 
 
