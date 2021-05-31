@@ -5737,10 +5737,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 797028382}
   endPosition: {fileID: 2003087485}
-  speedMoveCamera: 1
-  stepSpeedCamera: 1
-  stepAccelerationCamera: 5
-  maxSpeedCamera: 5
+  beginSpeedCamera: 1
+  timerAccelerateCamera: 5
+  stepAccelerateCamera: 1
+  stepTimerAccelerateCamera: 5
+  maxSpeedCamera: 10
   speedMove: 0
   positionCameraZ: -50
   positionCameraY: 30
